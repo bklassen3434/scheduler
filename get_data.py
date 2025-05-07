@@ -1,8 +1,3 @@
-# rpi_scraper_2025.py
-# ----------------------
-# This script pulls all D1 softball game data from the 2025 season,
-# calculates WP, OWP, OOWP, and RPI for each team, and saves to CSV.
-
 import requests
 import pandas as pd
 import time
@@ -10,7 +5,7 @@ from datetime import datetime, timedelta
 import os
 
 # -----------------------------------
-# 1. Detect whether a local API is running
+# 1. Detect local vs public API
 # -----------------------------------
 def detect_api_base():
     try:
@@ -26,7 +21,7 @@ def detect_api_base():
 BASE_URL = detect_api_base()
 
 # -----------------------------------
-# 2. Function to pull games from API
+# 2. Fetch games from API
 # -----------------------------------
 def get_scoreboard_data(year: int, month: int, day: int):
     url = f"{BASE_URL}/scoreboard/softball/d1/{year}/{month:02d}/{day:02d}/all-conf"
@@ -34,20 +29,13 @@ def get_scoreboard_data(year: int, month: int, day: int):
         response = requests.get(url, timeout=10)
         if response.status_code != 200:
             return []
-
         data = response.json()
-
-        if isinstance(data, dict) and "games" in data:
-            games = data["games"]
-            return games
-        else:
-            return []
-    except Exception as e:
+        return data.get("games", []) if isinstance(data, dict) else []
+    except:
         return []
 
-
 # -----------------------------------
-# 3. Extract winner/loser records from game
+# 3. Extract game results
 # -----------------------------------
 def extract_game_results(raw_games):
     records = []
@@ -116,13 +104,13 @@ def compute_rpi_components(game_df):
     } for team in teams])
 
 # -----------------------------------
-# 5. Main Scraper Logic
+# 5. Main logic
 # -----------------------------------
 def main():
     print("📡 Starting RPI scrape for 2025...")
     season_start = datetime(2025, 2, 1)
     season_end = datetime(2025, 5, 15)
-    chunk_size = 7  # days per chunk
+    chunk_size = 7
     all_games = []
 
     current_date = season_start
@@ -134,7 +122,7 @@ def main():
             raw_games = get_scoreboard_data(date.year, date.month, date.day)
             day_results = extract_game_results(raw_games)
             all_games.extend(day_results)
-            time.sleep(1)  # API throttle
+            time.sleep(1)  # prevent API spam
         current_date += timedelta(days=chunk_size)
 
     print(f"✅ Pulled {len(all_games)} game results.")
@@ -143,8 +131,13 @@ def main():
     games_df.to_csv("data/softball_2025_results.csv", index=False)
 
     rpi_df = compute_rpi_components(games_df)
-    rpi_df.to_csv("data/softball_2025_rpi.csv", index=False)
-    print("📁 Saved RPI to data/softball_2025_rpi.csv")
+
+    # Calculate Georgia Tech win probabilities using RPI-based logistic model
+    gt_rpi = rpi_df.loc[rpi_df["team"] == "Georgia Tech", "RPI"].values[0]
+    rpi_df["win_prob_vs_GT"] = 1 / (1 + 10 ** ((rpi_df["RPI"] - gt_rpi) * 10))  # 10 = scaling factor
+
+    rpi_df.to_csv("data/softball_2025_stats.csv", index=False)
+    print("📁 Saved RPI and Georgia Tech win probabilities to data/softball_2025_stats.csv")
 
 if __name__ == "__main__":
     main()

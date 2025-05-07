@@ -14087,6 +14087,10 @@ UMBC,UMass Lowell,W
 UMass Lowell,UMBC,L
 UMBC,UMass Lowell,W
 UMass Lowell,UMBC,L
+South Dakota,Kansas City,W
+Kansas City,South Dakota,L
+South Dakota,Kansas City,W
+Kansas City,South Dakota,L
 Iowa,Rutgers,W
 Rutgers,Iowa,L
 Georgia,Missouri,W
@@ -14359,6 +14363,8 @@ Purdue,Indiana,W
 Indiana,Purdue,L
 UMass Lowell,UMBC,W
 UMBC,UMass Lowell,L
+South Dakota,Kansas City,W
+Kansas City,South Dakota,L
 Iowa,Rutgers,W
 Rutgers,Iowa,L
 Louisiana Tech,Sam Houston,W
@@ -14575,3 +14581,65 @@ Western Ky.,Jacksonville St.,W
 Jacksonville St.,Western Ky.,L
 Oregon St.,LMU (CA),W
 LMU (CA),Oregon St.,L
+Jacksonville,North Ala.,W
+North Ala.,Jacksonville,L
+Lipscomb,Queens (NC),W
+Queens (NC),Lipscomb,L
+Northern Colo.,Portland St.,W
+Portland St.,Northern Colo.,L
+Alabama,Auburn,W
+Auburn,Alabama,L
+Ole Miss,Missouri,W
+Missouri,Ole Miss,L
+Georgia,Kentucky,W
+Kentucky,Georgia,L
+Bethune-Cookman,Prairie View,W
+Prairie View,Bethune-Cookman,L
+Florida A&M,Grambling,W
+Grambling,Florida A&M,L
+Jackson St.,Southern U.,W
+Southern U.,Jackson St.,L
+Alabama St.,Texas Southern,W
+Texas Southern,Alabama St.,L
+LSU,Mississippi St.,W
+Mississippi St.,LSU,L
+ETSU,Western Caro.,W
+Western Caro.,ETSU,L
+North Dakota,North Dakota St.,W
+North Dakota St.,North Dakota,L
+Mercer,Furman,W
+Furman,Mercer,L
+Tennessee Tech,Tennessee St.,W
+Tennessee St.,Tennessee Tech,L
+Lindenwood,UT Martin,W
+UT Martin,Lindenwood,L
+Drake,Murray St.,W
+Murray St.,Drake,L
+Missouri St.,UIC,W
+UIC,Missouri St.,L
+Canisius,Sacred Heart,W
+Sacred Heart,Canisius,L
+Rider,Quinnipiac,W
+Quinnipiac,Rider,L
+Purdue Fort Wayne,Northern Ky.,W
+Northern Ky.,Purdue Fort Wayne,L
+Campbell,Stony Brook,W
+Stony Brook,Campbell,L
+UAlbany,Maine,W
+Maine,UAlbany,L
+Memphis,UAB,W
+UAB,Memphis,L
+Stanford,Pittsburgh,W
+Pittsburgh,Stanford,L
+George Washington,Saint Joseph's,W
+Saint Joseph's,George Washington,L
+Indiana,Washington,W
+Washington,Indiana,L
+Ball St.,Akron,W
+Akron,Ball St.,L
+Jacksonville St.,Sam Houston,W
+Sam Houston,Jacksonville St.,L
+Penn St.,Iowa,W
+Iowa,Penn St.,L
+Creighton,Butler,W
+Butler,Creighton,L
